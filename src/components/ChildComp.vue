@@ -1,9 +1,11 @@
 <script setup lang="ts">
-const [model, modifiers] = defineModel<string, 'trim' | 'uppercase'>({ required: true })
-modifiers.uppercase
+defineEmits<{
+  update: [count: number]
+  reset: [count: number]
+}>()
 </script>
 <template>
   <h2>ChildComp</h2>
-  <input v-model="model" type="text" />
-  <p>model:{{ model }}</p>
+  <button @click="$emit('update', 100)">+100</button>
+  <button @click="$emit('reset', 0)">reset</button>
 </template>
